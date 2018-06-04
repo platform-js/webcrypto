@@ -60,7 +60,14 @@ describe('AES_GCM', () => {
 
     before(() => {
         aes = new AES_GCM({ name: "AES-GCM", length: 256 })
-        key = aes.importKey(
+        data = new TextEncoder().encode('Encoded with WebCrypto')
+        signature = new Uint8Array([
+          28, 37, 34, 19, 165, 194, 33, 41, 41, 64, 114,
+          99, 135, 63, 127, 127, 177, 159, 109, 92, 80,
+          40, 168, 117, 38, 124, 35, 180, 244, 74, 59,
+          140, 210, 236, 134, 182, 126, 180])
+        return Promise.resolve()
+          .then(() => aes.importKey(
             "jwk",
             {
                 kty: "oct",
@@ -73,13 +80,8 @@ describe('AES_GCM', () => {
             },
             true,
             ["encrypt", "decrypt"]
-        )
-        data = new TextEncoder().encode('Encoded with WebCrypto')
-        signature = new Uint8Array([
-          28, 37, 34, 19, 165, 194, 33, 41, 41, 64, 114,
-          99, 135, 63, 127, 127, 177, 159, 109, 92, 80,
-          40, 168, 117, 38, 124, 35, 180, 244, 74, 59,
-          140, 210, 236, 134, 182, 126, 180])
+          ))
+          .then(k => (key = k))
     })
 
     it("should throw invalid data length", () => {
@@ -129,7 +131,14 @@ describe('AES_GCM', () => {
     let aes, key, data, signature
     before(() => {
         aes = new AES_GCM({ name: "AES-GCM", length: 256 })
-        key = aes.importKey(
+        data = new Uint8Array([
+          28, 37, 34, 19, 165, 194, 33, 41, 41, 64, 114, 99,
+          135, 63, 127, 127, 177, 159, 109, 92, 80, 40, 168,
+          117, 38, 124, 35, 180, 244, 74, 59, 140, 210, 236,
+          134, 182, 126, 180])
+        signature = new TextEncoder().encode('Encoded with WebCrypto')
+        return Promise.resolve()
+          .then(() => aes.importKey(
             "jwk",
             {
                 kty: "oct",
@@ -142,13 +151,8 @@ describe('AES_GCM', () => {
             },
             true,
             ["encrypt", "decrypt"]
-        )
-        data = new Uint8Array([
-          28, 37, 34, 19, 165, 194, 33, 41, 41, 64, 114, 99,
-          135, 63, 127, 127, 177, 159, 109, 92, 80, 40, 168,
-          117, 38, 124, 35, 180, 244, 74, 59, 140, 210, 236,
-          134, 182, 126, 180])
-        signature = new TextEncoder().encode('Encoded with WebCrypto')
+          ))
+          .then(k => (key = k))
     })
 
     it("should throw with invalid tagLength", () => {
@@ -300,7 +304,8 @@ describe('AES_GCM', () => {
                 238, 56, 34, 45, 137, 113, 191, 114, 201,
                 213, 3, 61, 241])
             return Promise.resolve()
-            .then(() => cryptoKey = aes.importKey("raw", raw, {name:"AES-GCM"}, true, ["encrypt", "decrypt"]))
+              .then(() => aes.importKey("raw", raw, {name:"AES-GCM"}, true, ["encrypt", "decrypt"]))
+              .then(k => cryptoKey = k)
         })
 
         it('should expect a suitable raw length', () => {
@@ -351,7 +356,8 @@ describe('AES_GCM', () => {
                 ext: true,
             }
             return Promise.resolve()
-            .then(() => cryptoKey = aes.importKey("jwk", key, {name:"AES-GCM"}, true, ["encrypt", "decrypt"]))
+              .then(() => aes.importKey("jwk", key, {name:"AES-GCM"}, true, ["encrypt", "decrypt"]))
+              .then(k => (cryptoKey = k))
         })
 
         it('should expect a suitable jwk format', () => {

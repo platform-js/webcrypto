@@ -155,7 +155,8 @@ describe('AES_KW', () => {
         }
         aes = new AES_KW(alg)
         return Promise.resolve()
-        .then(() => cryptoKey = aes.generateKey(alg, true, ["wrapKey", "unwrapKey"]))
+          .then(() => aes.generateKey(alg, true, ["wrapKey", "unwrapKey"]))
+          .then(key => (cryptoKey = key))
     })
 
     it('should throw with invalid usages', () => {
@@ -243,7 +244,8 @@ describe('AES_KW', () => {
                 238, 56, 34, 45, 137, 113, 191, 114, 201,
                 213, 3, 61, 241])
             return Promise.resolve()
-            .then(() => cryptoKey = aes.importKey("raw", raw, {name:"AES-KW"}, true, ["wrapKey","unwrapKey"]))
+              .then(() => aes.importKey("raw", raw, {name:"AES-KW"}, true, ["wrapKey","unwrapKey"]))
+              .then(key => (cryptoKey = key))
         })
 
         it('should expect a suitable raw length', () => {
@@ -294,7 +296,8 @@ describe('AES_KW', () => {
                 ext: true,
             }
             return Promise.resolve()
-            .then(() => cryptoKey = aes.importKey("jwk", key, {name:"AES-KW"}, true, ["wrapKey","unwrapKey"]))
+              .then(() => aes.importKey("jwk", key, {name:"AES-KW"}, true, ["wrapKey","unwrapKey"]))
+              .then(key => (cryptoKey = key))
         })
 
         it('should expect a suitable jwk format', () => {

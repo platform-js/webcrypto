@@ -187,16 +187,17 @@ describe('RSA_OAEP', () => {
       alg = { name: 'RSA-OAEP', hash: { name: 'SHA-256' } }
       rsa = new RSA_OAEP(alg)
       return Promise.resolve()
-        .then(() => cryptoKeyPair = rsa.generateKey(
+        .then(() => rsa.generateKey(
           {
             name: "RSA-OAEP",
             modulusLength: 1024,
             publicExponent: new Uint8Array([0x01, 0x00, 0x01]),
             hash: {name: "SHA-256"},
           },
-        true,
-        ["encrypt", "decrypt"]
-      ))
+          true,
+          ["encrypt", "decrypt"]
+        ))
+        .then(key => (cryptoKeyPair = key))
     })
 
     it('should throw with invalid usages', () => {

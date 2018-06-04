@@ -140,7 +140,9 @@ const ECDSATest = ({ ECPrivateKey, ECPublicKey, ECPrivatePem, ECPublicPem }, ecc
         alg = { name: 'ECDSA', namedCurve: eccrv, hash: { name: echash }}
         ecdsa = new ECDSA(alg)
         return Promise.resolve()
-          .then(() => cryptoKeyPair = ecdsa.generateKey(alg, true, ['sign', 'verify']))
+          .then(() => ecdsa.generateKey(alg, true, ['sign', 'verify']))
+          .then(key => (cryptoKeyPair = key))
+
 
       })
 

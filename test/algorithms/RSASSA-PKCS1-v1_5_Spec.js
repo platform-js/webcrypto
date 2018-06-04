@@ -324,8 +324,8 @@ const NotSupportedError = require('../../src/errors/NotSupportedError')
       alg = { name: 'RSASSA-PKCS1-v1_5', modulusLength: 2048, hash: { name: 'SHA-256' } }
       rsa = new RSASSA_PKCS1_v1_5(alg)
       return Promise.resolve()
-        .then(() => cryptoKeyPair = rsa.generateKey(alg, true, ['sign', 'verify']))
-
+        .then(() => rsa.generateKey(alg, true, ['sign', 'verify']))
+        .then(key => (cryptoKeyPair = key))
     })
 
     it('should throw with invalid usages', () => {
@@ -544,7 +544,9 @@ const NotSupportedError = require('../../src/errors/NotSupportedError')
           }
 
           alg = new RSASSA_PKCS1_v1_5({ name: 'RSASSA-PKCS1-v1_5' })
-          key = alg.importKey('jwk', jwk, alg, false, ['verify'])
+          return Promise.resolve()
+            .then(() => alg.importKey('jwk', jwk, alg, false, ['verify']))
+            .then(k => (key = k))
         })
 
         it('should set SHA-1 hash', () => {
@@ -565,7 +567,9 @@ const NotSupportedError = require('../../src/errors/NotSupportedError')
           }
 
           alg = new RSASSA_PKCS1_v1_5({ name: 'RSASSA-PKCS1-v1_5' })
-          key = alg.importKey('jwk', jwk, alg, false, ['verify'])
+          return Promise.resolve()
+            .then(() => alg.importKey('jwk', jwk, alg, false, ['verify']))
+            .then(k => (key = k))
         })
 
         it('should set SHA-256 hash', () => {
@@ -586,7 +590,9 @@ const NotSupportedError = require('../../src/errors/NotSupportedError')
           }
 
           alg = new RSASSA_PKCS1_v1_5({ name: 'RSASSA-PKCS1-v1_5' })
-          key = alg.importKey('jwk', jwk, alg, false, ['verify'])
+          return Promise.resolve()
+            .then(() => alg.importKey('jwk', jwk, alg, false, ['verify']))
+            .then(k => (key = k))
         })
 
         it('should set SHA-384 hash', () => {
@@ -607,7 +613,9 @@ const NotSupportedError = require('../../src/errors/NotSupportedError')
           }
 
           alg = new RSASSA_PKCS1_v1_5({ name: 'RSASSA-PKCS1-v1_5' })
-          key = alg.importKey('jwk', jwk, alg, false, ['verify'])
+          return Promise.resolve()
+            .then(() => alg.importKey('jwk', jwk, alg, false, ['verify']))
+            .then(k => (key = k))
         })
 
         it('should set SHA-512 hash', () => {
@@ -649,7 +657,9 @@ const NotSupportedError = require('../../src/errors/NotSupportedError')
           }
 
           alg = new RSASSA_PKCS1_v1_5({ name: 'RSASSA-PKCS1-v1_5' })
-          key = alg.importKey('jwk', jwk, alg, false, ['verify'])
+          return Promise.resovle()
+            .then(() => alg.importKey('jwk', jwk, alg, false, ['verify']))
+            .then(k => (key = k))
         })
 
         it('should not define hash', () => {
@@ -662,7 +672,9 @@ const NotSupportedError = require('../../src/errors/NotSupportedError')
 
         before(() => {
           alg = new RSASSA_PKCS1_v1_5({ name: 'RSASSA-PKCS1-v1_5' })
-          key = alg.importKey('jwk', RsaPrivateJwk, alg, false, ['sign'])
+          return Promise.resolve()
+            .then(() => alg.importKey('jwk', RsaPrivateJwk, alg, false, ['sign']))
+            .then(k => (key = k))
         })
 
         it('should define type', () => {
@@ -699,7 +711,9 @@ const NotSupportedError = require('../../src/errors/NotSupportedError')
 
         before(() => {
           alg = new RSASSA_PKCS1_v1_5({ name: 'RSASSA-PKCS1-v1_5' })
-          key = alg.importKey('jwk', RsaPublicJwk, alg, false, ['verify'])
+          return Promise.resolve()
+            .then(() => alg.importKey('jwk', RsaPublicJwk, alg, false, ['verify']))
+            .then(k => (key = k))
         })
 
         it('should define type', () => {

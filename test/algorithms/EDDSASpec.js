@@ -163,8 +163,8 @@ let edd25519_public = {
         alg = { name: 'EDDSA', namedCurve: 'Ed25519' }
         eddsa = new EDDSA(alg)
         return Promise.resolve()
-          .then(() => cryptoKeyPair = eddsa.generateKey(alg, true, ['sign', 'verify']))
-
+          .then(() => eddsa.generateKey(alg, true, ['sign', 'verify']))
+          .then(key => (cryptoKeyPair = key))
       })
 
       it('should throw with invalid usages', () => {

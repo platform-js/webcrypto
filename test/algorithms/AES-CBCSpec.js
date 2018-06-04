@@ -154,7 +154,8 @@ describe('AES_CBC', () => {
         }
         aes = new AES_CBC(alg)
         return Promise.resolve()
-        .then(() => cryptoKey = aes.generateKey(alg,true,["encrypt", "decrypt"]))
+          .then(() => aes.generateKey(alg,true,["encrypt", "decrypt"]))
+          .then(key => (cryptoKey = key))
     })
 
     it('should throw with invalid usages', () => {
@@ -230,7 +231,8 @@ describe('AES_CBC', () => {
             aes = new AES_CBC(alg)
             raw = new Uint8Array([99, 76, 237, 223, 177, 224, 59, 31, 129, 99, 180, 144, 141, 133, 102, 174, 168, 79, 144, 238, 56, 34, 45, 137, 113, 191, 114, 201, 213, 3, 61, 241])
             return Promise.resolve()
-            .then(() => cryptoKey = aes.importKey("raw",raw,{name:"AES-CBC"},true,["encrypt", "decrypt"]) )
+              .then(() => aes.importKey("raw",raw,{name:"AES-CBC"},true,["encrypt", "decrypt"]) )
+              .then(key => (cryptoKey = key))
         })
 
         it('should expect a suitable raw length', () => {
@@ -280,7 +282,8 @@ describe('AES_CBC', () => {
                 ext: true,
             }
             return Promise.resolve()
-            .then(() => cryptoKey = aes.importKey("jwk",key,{name:"AES-CBC"},true,["encrypt", "decrypt"]))
+              .then(() => aes.importKey("jwk",key,{name:"AES-CBC"},true,["encrypt", "decrypt"]))
+              .then(key => (cryptoKey = key))
         })
 
         it('should expect a suitable jwk format', () => {

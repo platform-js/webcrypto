@@ -335,7 +335,8 @@ const NotSupportedError = require('../../src/errors/NotSupportedError')
       alg = { name: 'RSA-PSS', modulusLength: 2048, hash: { name: 'SHA-256' } }
       rsa = new RSA_PSS(alg)
       return Promise.resolve()
-        .then(() => cryptoKeyPair = rsa.generateKey(alg, true, ['sign', 'verify']))
+        .then(() => rsa.generateKey(alg, true, ['sign', 'verify']))
+        .then(key => (cryptoKeyPair = key))
 
     })
 
