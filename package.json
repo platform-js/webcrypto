@@ -1,6 +1,6 @@
 {
   "name": "@platformparity/web-cryptography",
-  "version": "1.0.0-wip",
+  "version": "1.0.0-wip.0",
   "description": "WebCrypto API for Node.js",
   "main": "src/index.js",
   "files": [
