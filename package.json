@@ -1,9 +1,14 @@
 {
-  "name": "@trust/webcrypto",
-  "version": "0.9.2",
+  "name": "@platformparity/web-cryptography",
+  "version": "1.0.0-wip",
   "description": "WebCrypto API for Node.js",
   "main": "src/index.js",
-  "types": "index.d.ts",
+  "files": [
+    "src"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
   "directories": {
     "test": "test"
   },
@@ -12,19 +17,14 @@
     "jsdoc": "jsdoc -c jsdoc.json -r",
     "coverage": "nyc --reporter=lcov _mocha test"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+ssh://git@github.com/anvilresearch/webcrypto.git"
-  },
   "keywords": [
-    "WebCrypto"
+    "web",
+    "crypto",
+    "cryptography",
+    "api"
   ],
   "author": "Anvil Research, Inc.",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/anvilresearch/webcrypto/issues"
-  },
-  "homepage": "https://github.com/anvilresearch/webcrypto#README",
   "dependencies": {
     "@trust/keyto": "^0.3.4",
     "base64url": "^3.0.0",
@@ -38,5 +38,13 @@
     "jsdoc": "^3.4.3",
     "mocha": "^5.2.0",
     "nyc": "^11.2.1"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/platformparity/web-cryptography.git"
+  },
+  "bugs": {
+    "url": "https://github.com/platformparity/web-cryptography/issues"
+  },
+  "homepage": "https://github.com/platformparity/web-cryptography#readme"
 }
