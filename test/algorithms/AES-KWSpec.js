@@ -10,7 +10,7 @@ const expect = chai.expect
 chai.should()
 
 const {TextEncoder} = require('text-encoding')
-const crypto = require('../../src')
+const {crypto} = require('../../src')
 const CryptoKey = require('../../src/keys/CryptoKey')
 const CryptoKeyPair = require('../../src/keys/CryptoKeyPair')
 const KeyAlgorithm = require('../../src/dictionaries/KeyAlgorithm')
@@ -76,9 +76,9 @@ describe('AES_KW', () => {
             ["wrapKey", "unwrapKey"]
         )
         signature = new Uint8Array([
-            63, 180, 233, 152, 186, 3, 20, 59, 64, 210, 44, 117, 189, 
-            178, 116, 253, 244, 208, 240, 194, 57, 201, 96, 118, 236, 
-            78, 183, 171, 194, 117, 62, 142, 167, 21, 169, 255, 111, 
+            63, 180, 233, 152, 186, 3, 20, 59, 64, 210, 44, 117, 189,
+            178, 116, 253, 244, 208, 240, 194, 57, 201, 96, 118, 236,
+            78, 183, 171, 194, 117, 62, 142, 167, 21, 169, 255, 111,
             227, 86, 199])
     })
 
@@ -120,14 +120,14 @@ describe('AES_KW', () => {
             ["wrapKey", "unwrapKey"]
         )
         data = new Uint8Array([
-            63, 180, 233, 152, 186, 3, 20, 59, 64, 210, 44, 117, 189, 
-            178, 116, 253, 244, 208, 240, 194, 57, 201, 96, 118, 236, 
-            78, 183, 171, 194, 117, 62, 142, 167, 21, 169, 255, 111, 
+            63, 180, 233, 152, 186, 3, 20, 59, 64, 210, 44, 117, 189,
+            178, 116, 253, 244, 208, 240, 194, 57, 201, 96, 118, 236,
+            78, 183, 171, 194, 117, 62, 142, 167, 21, 169, 255, 111,
             227, 86, 199])
     })
 
     it('should return an Array', () => {
-        aes.unwrapKey( 
+        aes.unwrapKey(
             "raw",
             data,
             key,

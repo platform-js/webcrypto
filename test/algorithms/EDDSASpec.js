@@ -10,7 +10,7 @@ const expect = chai.expect
 chai.should()
 
 const {TextEncoder} = require('text-encoding')
-const crypto = require('../../src')
+const {crypto} = require('../../src')
 const CryptoKey = require('../../src/keys/CryptoKey')
 const CryptoKeyPair = require('../../src/keys/CryptoKeyPair')
 const JsonWebKey = require('../../src/keys/JsonWebKey')
@@ -26,13 +26,13 @@ const CurrentlyNotSupportedError = require('../../src/errors/CurrentlyNotSupport
  * Code under test
  */
 // Taken from https://tools.ietf.org/html/rfc8032#section-7.1, Test 2
-let edd25519_private = { 
+let edd25519_private = {
   type: 'private',
   hex: `4ccd089b28ff96da9db6c346ec114e0f5b8a319f35aba624da8cf6ed4fb8a6fb`
 }
 let edd25519_public = {
   type: 'public',
-  hex: `3d4017c3e843895a92b70aa74d1b7ebc9c982ccf2ec4968cc0cd55f12af4660c` 
+  hex: `3d4017c3e843895a92b70aa74d1b7ebc9c982ccf2ec4968cc0cd55f12af4660c`
 }
 
 /**
@@ -68,7 +68,7 @@ let edd25519_public = {
 
       before(() => {
           alg = { name: 'EDDSA', namedCurve: 'Ed25519' }
-          eddsa = new EDDSA(alg) 
+          eddsa = new EDDSA(alg)
           eddsaPublicKey = eddsa.importKey(
               "hex",
               edd25519_public,
@@ -300,7 +300,7 @@ let edd25519_public = {
         describe('invalid key use', () => {
           let key, alg, eddsa
 
-          before(() => {            
+          before(() => {
             key = {
               kty:  "OKP",
               crv:  "Ed25519",
@@ -370,7 +370,7 @@ let edd25519_public = {
             }
           eddsa = new EDDSA(alg)
           eddsaPublicKey = eddsa.importKey(
-              "jwk", 
+              "jwk",
               {
                 kty:  "OKP",
                 crv:  "Ed25519",
@@ -402,7 +402,7 @@ let edd25519_public = {
 
     describe('with "raw" format', () => {})
     })
-    
+
     describe('with "hex" format', () => {
       describe('private key and invalid usages', () => {
             let key, alg, ec
@@ -448,7 +448,7 @@ let edd25519_public = {
                   name: 'EDDSA', namedCurve: 'Ed25519',
               }
               ec = new EDDSA(alg)
-              key = { 
+              key = {
                 type: "GARBAGE",
                 hex: edd25519_public.hex
               }
@@ -464,7 +464,7 @@ let edd25519_public = {
           describe('invalid key use', () => {
             let key, alg, eddsa
 
-            before(() => {            
+            before(() => {
               key = edd25519_private
               alg = {
                   name: 'EDDSA', namedCurve: 'Ed25519',
@@ -664,7 +664,7 @@ let edd25519_public = {
             key = eddsaPublicKey
           })
 
-        it('should throw NotSupportedError', () => {          
+        it('should throw NotSupportedError', () => {
           let caller = () => {
             eddsa.exportKey('WRONG', key)
           }

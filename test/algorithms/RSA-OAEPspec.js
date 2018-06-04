@@ -13,7 +13,7 @@ chai.should()
  * Code under test
  */
 const {TextEncoder} = require('text-encoding')
-const crypto = require('../../src')
+const {crypto} = require('../../src')
 const CryptoKey = require('../../src/keys/CryptoKey')
 const CryptoKeyPair = require('../../src/keys/CryptoKeyPair')
 const KeyAlgorithm = require('../../src/dictionaries/KeyAlgorithm')
@@ -45,9 +45,9 @@ let RsaPrivateJwk = {
 let RsaPrivateCryptoKey = Rsa.importKey(
     "jwk",
     RsaPrivateJwk,
-    {  
+    {
         name: "RSA-OAEP",
-        hash: {name: "SHA-1"}, 
+        hash: {name: "SHA-1"},
     },
     true,
     ["decrypt"]
@@ -61,11 +61,11 @@ let RsaPublicJwk = {
   "n":"q6kM0z9Faa2BHYSakuzZKirz3o7dNG83nq3Yw5KC1FOUkQStDtYz8EMkYV99WfHMCaRA_q_WBjRVnweQawFtR4zwNcmEhU-fUEIZCZ17ArKoNOy45Ep8NVuYJG3-OyYHuwnz5xLIvW9GVk2UqAJKaLSatuT2utU6JKeLu-4C0cb4eYUGT_RT-qsTF_NSWyyzdHrZzp9FX7ly-UTZw3inyjZYp5Ps1Ka5HzByzCTHhs_tatzLwG0FgjS7msPmwzE9RZFr1-J9exvIqhCmhvj5LSIdFmm5MEXC_b47fYCqSCE81bBofD2Ee0k72qOA-JfKNhrNXoLzuR7_1Ig1xJ8Ahw"
 }
 let RsaPublicCryptoKey = Rsa.importKey(
-    "jwk", 
+    "jwk",
     RsaPublicJwk,
-    {   
+    {
         name: "RSA-OAEP",
-        hash: {name: "SHA-1"}, 
+        hash: {name: "SHA-1"},
     },
     true,
     ["encrypt"]
@@ -190,11 +190,11 @@ describe('RSA_OAEP', () => {
         .then(() => cryptoKeyPair = rsa.generateKey(
           {
             name: "RSA-OAEP",
-            modulusLength: 1024, 
+            modulusLength: 1024,
             publicExponent: new Uint8Array([0x01, 0x00, 0x01]),
-            hash: {name: "SHA-256"}, 
+            hash: {name: "SHA-256"},
           },
-        true, 
+        true,
         ["encrypt", "decrypt"]
       ))
     })

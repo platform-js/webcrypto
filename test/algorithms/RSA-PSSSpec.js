@@ -28,7 +28,7 @@ const {
   RsaPublicCryptoKeySHA512
 } = require('../RsaKeyPairForPSSTesting')
 
-const crypto = require('../../src')
+const {crypto} = require('../../src')
 const CryptoKey = require('../../src/keys/CryptoKey')
 const CryptoKeyPair = require('../../src/keys/CryptoKeyPair')
 const KeyAlgorithm = require('../../src/dictionaries/KeyAlgorithm')
@@ -69,13 +69,13 @@ const NotSupportedError = require('../../src/errors/NotSupportedError')
    * sign
    */
   describe('sign', () => {
-    let data, 
+    let data,
         rsa1,
         rsa256,
         rsa384,
         rsa512,
-        signatureSHA1, 
-        signatureSHA256, 
+        signatureSHA1,
+        signatureSHA256,
         signatureSHA384,
         signatureSHA512
 
@@ -101,7 +101,7 @@ const NotSupportedError = require('../../src/errors/NotSupportedError')
         22,83,128,43,83,140,14,133,125,234,253,243,83,232,145,192,22,121,173,194,
         179,64,134,217,52,79,164,29,117,229,231,201,1,161,233,148,143,45,170,115,
         151,188,110,40,201,7,19,167,206,66,179,157,166
-      ]) 
+      ])
 
       signatureSHA256 = new Uint8Array([
         125,62,110,162,81,189,84,124,6,128,24,121,105,62,151,102,224,113,59,
@@ -214,13 +214,13 @@ const NotSupportedError = require('../../src/errors/NotSupportedError')
    * verify
    */
   describe('verify', () => {
-    let data, 
+    let data,
         rsa1,
         rsa256,
         rsa384,
         rsa512,
-        signatureSHA1, 
-        signatureSHA256, 
+        signatureSHA1,
+        signatureSHA256,
         signatureSHA384,
         signatureSHA512
 
@@ -246,7 +246,7 @@ const NotSupportedError = require('../../src/errors/NotSupportedError')
         22,83,128,43,83,140,14,133,125,234,253,243,83,232,145,192,22,121,173,194,
         179,64,134,217,52,79,164,29,117,229,231,201,1,161,233,148,143,45,170,115,
         151,188,110,40,201,7,19,167,206,66,179,157,166
-      ]) 
+      ])
 
       signatureSHA256 = new Uint8Array([
         125,62,110,162,81,189,84,124,6,128,24,121,105,62,151,102,224,113,59,

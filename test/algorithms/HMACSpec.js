@@ -13,7 +13,7 @@ const expect = chai.expect
  * Code under test
  */
 const {TextEncoder} = require('text-encoding')
-const crypto = require('../../src')
+const {crypto} = require('../../src')
 const CryptoKey = require('../../src/keys/CryptoKey')
 const KeyAlgorithm = require('../../src/dictionaries/KeyAlgorithm')
 const HmacKeyAlgorithm = require('../../src/dictionaries/HmacKeyAlgorithm')

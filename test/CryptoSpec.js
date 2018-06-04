@@ -11,7 +11,7 @@ chai.should()
 /**
  * Code under test
  */
-const crypto = require('../src')
+const {crypto} = require('../src')
 const SubtleCrypto = require('../src/SubtleCrypto')
 
 /**

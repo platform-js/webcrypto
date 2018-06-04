@@ -10,7 +10,7 @@ const expect = chai.expect
 chai.should()
 
 const {TextEncoder} = require('text-encoding')
-const crypto = require('../../src')
+const {crypto} = require('../../src')
 const CryptoKey = require('../../src/keys/CryptoKey')
 const CryptoKeyPair = require('../../src/keys/CryptoKeyPair')
 const KeyAlgorithm = require('../../src/dictionaries/KeyAlgorithm')
@@ -77,7 +77,7 @@ describe('AES_CTR', () => {
         )
         data = new TextEncoder().encode('Encoded with WebCrypto')
         signature = new Uint8Array([
-            105, 17, 182, 253, 106, 236, 160, 39, 22, 23, 4, 230, 
+            105, 17, 182, 253, 106, 236, 160, 39, 22, 23, 4, 230,
             196, 158, 208, 79, 149, 225, 178, 37, 160, 63])
     })
 
@@ -131,7 +131,7 @@ describe('AES_CTR', () => {
             ["encrypt", "decrypt"]
         )
         data = new Uint8Array([
-          105, 17, 182, 253, 106, 236, 160, 39, 22, 23, 4, 230, 196, 
+          105, 17, 182, 253, 106, 236, 160, 39, 22, 23, 4, 230, 196,
           158, 208, 79, 149, 225, 178, 37, 160, 63])
         signature = new TextEncoder().encode('Encoded with WebCrypto')
     })
@@ -485,8 +485,8 @@ describe('AES_CTR', () => {
             }, {name:"AES-CTR"}, true, ["encrypt", "decrypt"])
             raw = aes.exportKey("raw",key)
             exportedFromChrome = new Uint8Array([
-                99, 76, 237, 223, 177, 224, 59, 31, 129, 99, 180, 144, 141, 
-                133, 102, 174, 168, 79, 144, 238, 56, 34, 45, 137, 113, 191, 
+                99, 76, 237, 223, 177, 224, 59, 31, 129, 99, 180, 144, 141,
+                133, 102, 174, 168, 79, 144, 238, 56, 34, 45, 137, 113, 191,
                 114, 201, 213, 3, 61, 241])
         })
 

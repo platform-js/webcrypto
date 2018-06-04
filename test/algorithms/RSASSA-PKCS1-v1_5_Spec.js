@@ -28,7 +28,7 @@ const {
   RsaPublicCryptoKeySHA512
 } = require('../RsaKeyPairForTesting')
 
-const crypto = require('../../src')
+const {crypto} = require('../../src')
 const CryptoKey = require('../../src/keys/CryptoKey')
 const CryptoKeyPair = require('../../src/keys/CryptoKeyPair')
 const KeyAlgorithm = require('../../src/dictionaries/KeyAlgorithm')
@@ -69,13 +69,13 @@ const NotSupportedError = require('../../src/errors/NotSupportedError')
    * sign
    */
   describe('sign', () => {
-      let data, 
+      let data,
         rsa1,
         rsa256,
         rsa384,
         rsa512,
-        signatureSHA1, 
-        signatureSHA256, 
+        signatureSHA1,
+        signatureSHA256,
         signatureSHA384,
         signatureSHA512
 
@@ -195,13 +195,13 @@ const NotSupportedError = require('../../src/errors/NotSupportedError')
    * verify
    */
   describe('verify', () => {
-      let data, 
+      let data,
         rsa1,
         rsa256,
         rsa384,
         rsa512,
-        signatureSHA1, 
-        signatureSHA256, 
+        signatureSHA1,
+        signatureSHA256,
         signatureSHA384,
         signatureSHA512
 

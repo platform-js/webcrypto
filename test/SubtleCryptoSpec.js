@@ -12,7 +12,7 @@ chai.should()
 /**
  * Code under test
  */
-const crypto = require('../src')
+const {crypto} = require('../src')
 const CryptoKey = require('../src/keys/CryptoKey')
 const CryptoKeyPair = require('../src/keys/CryptoKeyPair')
 const JsonWebKey = require('../src/keys/JsonWebKey')
@@ -124,39 +124,39 @@ describe('SubtleCrypto', () => {
 
       beforeEach((done) => {
 
-        aes = new AES_CBC({ name: 'AES-CBC', length: 256}) 
+        aes = new AES_CBC({ name: 'AES-CBC', length: 256})
         i =  Buffer.from([ 220, 29, 37, 164, 41, 84, 153, 197, 157, 122, 156, 254, 196, 161, 114, 74 ])
         algorithm = { name: 'AES-CBC', iv:i }
         key = aes.importKey(
-            "jwk", 
-            {   
+            "jwk",
+            {
                 kty: "oct",
                 k: "Y0zt37HgOx-BY7SQjYVmrqhPkO44Ii2Jcb9yydUDPfE",
                 alg: "A256CBC",
                 ext: true,
             },
-            {   
+            {
                 name: "AES-CBC",
             },
-            true, 
-            ["encrypt","decrypt"] 
+            true,
+            ["encrypt","decrypt"]
         )
         let data = new TextEncoder().encode('signed with Chrome Webcrypto')
 
         signature = new Uint8Array([
-            76, 82, 211, 155, 13, 154, 24, 6, 156, 203, 50, 
-            171, 210, 17, 88, 145, 32, 225, 125, 119, 179, 
+            76, 82, 211, 155, 13, 154, 24, 6, 156, 203, 50,
+            171, 210, 17, 88, 145, 32, 225, 125, 119, 179,
             197, 224, 210, 122, 43, 255, 159, 59, 195, 206, 210])
 
         promise = crypto.subtle
           .encrypt(algorithm, key, data)
           .then(res => {
-            result = res 
+            result = res
             done()
           })
           .catch(err => {
-            error = err 
-            done()  
+            error = err
+            done()
           })
       })
 
@@ -256,26 +256,26 @@ describe('SubtleCrypto', () => {
 
       beforeEach((done) => {
 
-        aes = new AES_CBC({ name: 'AES-CBC', length: 256}) 
+        aes = new AES_CBC({ name: 'AES-CBC', length: 256})
         i =  Buffer.from([ 220, 29, 37, 164, 41, 84, 153, 197, 157, 122, 156, 254, 196, 161, 114, 74 ])
         algorithm = { name: 'AES-CBC', iv:i }
         key = aes.importKey(
-            "jwk", 
-            {   
+            "jwk",
+            {
                 kty: "oct",
                 k: "Y0zt37HgOx-BY7SQjYVmrqhPkO44Ii2Jcb9yydUDPfE",
                 alg: "A256CBC",
                 ext: true,
             },
-            {   
+            {
                 name: "AES-CBC",
             },
-            true, 
-            ["encrypt","decrypt"] 
+            true,
+            ["encrypt","decrypt"]
         )
         let data = new Uint8Array([
-            76, 82, 211, 155, 13, 154, 24, 6, 156, 203, 50, 
-            171, 210, 17, 88, 145, 32, 225, 125, 119, 179, 
+            76, 82, 211, 155, 13, 154, 24, 6, 156, 203, 50,
+            171, 210, 17, 88, 145, 32, 225, 125, 119, 179,
             197, 224, 210, 122, 43, 255, 159, 59, 195, 206, 210])
 
         signature = new TextEncoder().encode('signed with Chrome Webcrypto')
@@ -298,7 +298,7 @@ describe('SubtleCrypto', () => {
       })
 
       it('should resolve a correct decryption for the data and key', () => {
-        Buffer.from(result).should.eql(Buffer.from(signature.buffer)) 
+        Buffer.from(result).should.eql(Buffer.from(signature.buffer))
       })
 
       it('should not reject the promise', () => {
@@ -913,7 +913,7 @@ describe('SubtleCrypto', () => {
                 k: "Y0zt37HgOx-BY7SQjYVmrqhPkO44Ii2Jcb9yydUDPfE",
                 alg: "A256GCM",
                 ext: true,
-            }, 
+            },
             {
                 name: "AES-GCM",
             },
@@ -946,7 +946,7 @@ describe('SubtleCrypto', () => {
                 k: "Y0zt37HgOx-BY7SQjYVmrqhPkO44Ii2Jcb9yydUDPfE",
                 alg: "A256GCM",
                 ext: true,
-            }, 
+            },
             {
                 name: "AES-GCM",
             },
@@ -980,7 +980,7 @@ describe('SubtleCrypto', () => {
                 k: "Y0zt37HgOx-BY7SQjYVmrqhPkO44Ii2Jcb9yydUDPfE",
                 alg: "A256GCM",
                 ext: true,
-            }, 
+            },
             {
                 name: "AES-GCM",
             },
@@ -1014,7 +1014,7 @@ describe('SubtleCrypto', () => {
                 k: "Y0zt37HgOx-BY7SQjYVmrqhPkO44Ii2Jcb9yydUDPfE",
                 alg: "A256GCM",
                 ext: true,
-            }, 
+            },
             {
                 name: "AES-GCM",
             },
@@ -1049,7 +1049,7 @@ describe('SubtleCrypto', () => {
                 k: "Y0zt37HgOx-BY7SQjYVmrqhPkO44Ii2Jcb9yydUDPfE",
                 alg: "A256GCM",
                 ext: true,
-            }, 
+            },
             {
                 name: "AES-GCM",
             },
@@ -1061,7 +1061,7 @@ describe('SubtleCrypto', () => {
         promise.then(res => {
             result = res
             done()
-          })  
+          })
         .catch(err => {
           error = err
           done()
@@ -1078,7 +1078,7 @@ describe('SubtleCrypto', () => {
 
       it('should not reject the promise', () => {
         expect(error).to.be.undefined
-      })      
+      })
     })
   })
 
@@ -1113,7 +1113,7 @@ describe('SubtleCrypto', () => {
                 k: "Y0zt37HgOx-BY7SQjYVmrqhPkO44Ii2Jcb9yydUDPfE",
                 alg: "A256GCM",
                 ext: true,
-            }, 
+            },
             {
                 name: "AES-GCM",
             },
@@ -1129,7 +1129,7 @@ describe('SubtleCrypto', () => {
               iv: good_iv,
               tagLength: 128
             },
-            {   
+            {
                 name: "AES-NONSENSE",
                 length: 256
             },
@@ -1161,9 +1161,9 @@ describe('SubtleCrypto', () => {
                 k: "Y0zt37HgOx-BY7SQjYVmrqhPkO44Ii2Jcb9yydUDPfE",
                 alg: "A256GCM",
                 ext: true,
-            }, 
+            },
             {
-                name: "AES-GCM", 
+                name: "AES-GCM",
             },
             true,
             ["encrypt", "decrypt","wrapKey","unwrapKey"]
@@ -1177,8 +1177,8 @@ describe('SubtleCrypto', () => {
               iv: good_iv,
               tagLength: 128
             },
-            {   
-                name: "AES-CBC", // Incorrect 
+            {
+                name: "AES-CBC", // Incorrect
                 length: 256
             },
             true,
@@ -1214,7 +1214,7 @@ describe('SubtleCrypto', () => {
                 k: "Y0zt37HgOx-BY7SQjYVmrqhPkO44Ii2Jcb9yydUDPfE",
                 alg: "A256GCM",
                 ext: true,
-            }, 
+            },
             {
                 name: "AES-GCM",
             },
@@ -1230,7 +1230,7 @@ describe('SubtleCrypto', () => {
               iv: good_iv,
               tagLength: 128
             },
-            {   
+            {
                 name: "AES-GCM",
                 length: 256
             },
@@ -1253,7 +1253,7 @@ describe('SubtleCrypto', () => {
     describe('with different key arguments', async () => {
       let unwrappedSymmetric;
       before(async () => {
-      
+
         let cryptoAlgorithm = {
           name: "RSA-OAEP",
           modulusLength: 2048,
@@ -1265,7 +1265,7 @@ describe('SubtleCrypto', () => {
           name: "AES-GCM",
           length: 256, //can be  128, 192, or 256
         };
-        
+
         let wrappingAlgorithm = {
           name: "RSA-OAEP",
           hash: {name: "SHA-1"},
@@ -1317,7 +1317,7 @@ describe('SubtleCrypto', () => {
                 k: "Y0zt37HgOx-BY7SQjYVmrqhPkO44Ii2Jcb9yydUDPfE",
                 alg: "A256GCM",
                 ext: true,
-            }, 
+            },
             {
                 name: "AES-GCM",
             },
@@ -1333,7 +1333,7 @@ describe('SubtleCrypto', () => {
               iv: good_iv,
               tagLength: 128
             },
-            {   
+            {
                 name: "AES-GCM",
                 length: 256
             },
@@ -1361,7 +1361,7 @@ describe('SubtleCrypto', () => {
 
       it('should not reject the promise', () => {
         expect(error).to.be.undefined
-      })   
+      })
     })
   })
 })
