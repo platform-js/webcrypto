@@ -27,7 +27,7 @@ describe('Crypto', () => {
     it('should write random values to the typed array', () => {
       let array = new Uint8Array(16)
       crypto.getRandomValues(array)
-      array.forEach(value => value.should.not.equal(0))
+      array.reduce((sum, value) => sum + value, 0).should.not.equal(0)
     })
   })
 
